@@ -52,31 +52,43 @@
         </span>
     </p>
     <p>Confirm Password:
-        <input type="password" name="confirm" [(ngModel)]="user.confirm">
-        <span ng-show="regsform.confirm.$invalid">Must match the password.</span>
+        <input type="password" name="confirm" [(ngModel)]="user.confirm"
+        required
+        #confirm="ngModel">
+        <span *ngIf="user.confirm != user.password && confirm.invalid && (confirm.dirty || confirm.touched)">
+            <span *ngIf="confirm.errors.required">Confirm password need to match the password.</span>  
+        </span>
     </p>
     <p>Street Address
-        <input type="text" name="street" [(ngModel)]="user.street">
-        <span ng-show="regsform.street.$invalid">Address is required.</span>
+        <input type="text" name="street" [(ngModel)]="user.street"
+        required
+        #street="ngModel">
+        <span *ngIf="street.invalid && (street.dirty || street.touched)">
+            <span *ngIf="street.errors.required">Address is required.</span>
+        </span>
     </p>
     <p>Unit/Apt #
         <input type="text" name="unit" [(ngModel)]="user.unit">
     </p>
     <p>City
-        <input type="text" name="city" [(ngModel)]="user.city">
-        <span ng-show="regsform.city.$invalid">City is required.</span>
+        <input type="text" name="city" [(ngModel)]="user.city"
+        required
+        #city="ngModel">
+        <span *ngIf="street.invalid && (street.dirty || street.touched)">
+            <span *ngIf="city.errors.required">City is required.</span>
+        </span>
     </p>
     <p>State
-    <select name="state">
-        <option value="CA">CA</option>
-        <option value="WA">WA</option>
-        <span ng-show="regsform.state.$invalid">State is required.</span>
-    </select>
+        <select name="state" [(ngModel)]="user.state"
+        required
+        #state="ngModel">
+            <option value="CA">CA</option>
+            <option value="WA">WA</option>
+        </select>
     </p>
     <p>I am feeling lucky:
         <input type="radio" name="lucky" value="yes" checked>Yes
         <input type="radio" name="lucky" value="no">No
-        <span ng-show="regsform.street.$invalid"></span>
     </p>
     <button (click)="show()">Submit</button>
     <p>{{buttonclick}}</p>
