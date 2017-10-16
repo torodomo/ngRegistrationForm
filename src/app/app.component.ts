@@ -7,13 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Registration Form';
-  buttonclick: any = '';
+  buttonclick: String = '';
   user = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     confirm: '',
+    street: '',
     unit: '',
     city: '',
     state: ''
@@ -22,6 +23,8 @@ export class AppComponent {
 
 
   show() {
-    this.buttonclick = this.user.firstName;
+    this.buttonclick = 'Thank you for registering with us ' + this.user.firstName;
+    this.buttonclick += '. We just sent you a confirmation email at ' + this.user.email + ', and we will send all mail to ';
+    this.buttonclick += this.user.street + ',' + this.user.unit + ',' + this.user.city + ',' + this.user.state + '. Have a wonderful day!';
   }
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; // <-- Import FormsModule
 import { HttpModule } from '@angular/http'; // <-- Import HttpModule

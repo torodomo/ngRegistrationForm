@@ -7,8 +7,8 @@
 <div>
     <h3>Account Information</h3>
 </div>
-<div ng-app="formApp" ng-controller="formCtrl">
-<form name="regsform">
+<div>
+<form (ngSubmit)="show()" name="regsform" #regsform='ngForm'>
     <p>First Name:
         <input type="text" name="firstName" [(ngModel)]="user.firstName"
         required
@@ -43,20 +43,21 @@
         <input type="password" name="password" [(ngModel)]="user.password"
         required
         minlength="8"
-        maxlength="12"
-        pattern="^([a-zA-Z0-9@*#]{8,24})$"
+        maxlength="24"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,24}"
         #password="ngModel">
         <span *ngIf="password.invalid && (password.dirty || password.touched)">
             <span *ngIf="password.errors.required">Password name is required.</span>
-            <span *ngIf="password.errors.pattern">Password must be at least 8 characters long</span>  
+            <span *ngIf="password.errors.pattern">Password must be at least 8 characters long, contain 1 capital, 1 munber and a special character</span>  
         </span>
     </p>
     <p>Confirm Password:
         <input type="password" name="confirm" [(ngModel)]="user.confirm"
         required
+        Equalvalidate="password"
         #confirm="ngModel">
-        <span *ngIf="user.confirm != user.password && confirm.invalid && (confirm.dirty || confirm.touched)">
-            <span *ngIf="confirm.errors.required">Confirm password need to match the password.</span>  
+        <span *ngIf="confirm.invalid && (confirm.dirty || confirm.touched)">
+            <span *ngIf="confirm.errors">Confirm password need to match the password.</span>  
         </span>
     </p>
     <p>Street Address
@@ -85,19 +86,26 @@
             <option value="CA">CA</option>
             <option value="WA">WA</option>
         </select>
+        <span *ngIf="state.invalid && (state.dirty || state.touched)">
+                <span *ngIf="state.errors.required">State is required.</span>
+        </span>
     </p>
     <p>I am feeling lucky:
         <input type="radio" name="lucky" value="yes" checked>Yes
         <input type="radio" name="lucky" value="no">No
     </p>
-    <button (click)="show()">Submit</button>
+    <button type="submit" ng-disabled="false" *ngIf="regsform.valid">Registrater</button>
     <p>{{buttonclick}}</p>
 </form>
 </div>
 <script>
     var app = angular.module('formApp', []);
     app.controller('formCtrl', function($scope) {
-        $scope.first_name = "";
+        $scope.firstName = "";
+        $scope.lastName = "";
+        $scope.email = "";
+        $scope.street = "";
+        $scope.state = "";
     });
 </script>
 
