@@ -54,10 +54,9 @@
     <p>Confirm Password:
         <input type="password" name="confirm" [(ngModel)]="user.confirm"
         required
-        Equalvalidate="password"
         #confirm="ngModel">
-        <span *ngIf="confirm.invalid && (confirm.dirty || confirm.touched)">
-            <span *ngIf="confirm.errors">Confirm password need to match the password.</span>  
+        <span *ngIf="user.password != user.confirm && (confirm.dirty || confirm.touched)">
+            Confirm password need to match the password. 
         </span>
     </p>
     <p>Street Address
