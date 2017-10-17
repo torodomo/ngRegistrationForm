@@ -35,7 +35,7 @@
         email
         #email="ngModel">
         <span *ngIf="email.invalid && (email.dirty || email.touched)">
-            <span *ngIf="lastName.errors.required">Email name is required.</span>
+            <span *ngIf="email.errors.required">Email name is required.</span>
             <span *ngIf="email.errors.email">Email must be volid.</span>
         </span>
     </p>
